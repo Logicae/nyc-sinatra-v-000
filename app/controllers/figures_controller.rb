@@ -1,7 +1,7 @@
 require 'pry'
-class FiguresController < ApplicationController
+class FiguresController<ApplicationController
 
-  get '/figures' do
+  get '/figures/new' do
     erb :"figures/new"
   end
 
