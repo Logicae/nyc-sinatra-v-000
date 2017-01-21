@@ -8,6 +8,10 @@
       Titles:
       <input type="text" name="figure[title_ids][]" id= "title[name]">
 
+      <%Title.all.each do |title|%>
+        <input id="<%=title.name%>" type="checkbox" name="title[name][]" value="<%= figure[title_ids]%>"><%=title.name%>
+      <%end%>
+
       Landmark:
       <input type="text" name="figure[landmark_ids][]" id= "landmark[name]">
 
