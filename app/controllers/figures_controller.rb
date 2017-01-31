@@ -6,8 +6,15 @@ class FiguresController<ApplicationController
   end
 
   post '/figures' do
-    binding.pry
-    @figure = Figure.create(name: params[:figure_name])
+    @figure = Figure.create(name: params["figure_name"])
+    
+    if !Title.find_by_name(params["new_title"])
+      title = Title.create(name: params["new_title"])
+      @figure.titles << title
+    else
+      title = find_by_name(params["new_title"])
+      @figure.titles << title
+    end
 
   end
 
