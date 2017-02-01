@@ -1,6 +1,4 @@
-require 'pry'
 class FiguresController<ApplicationController
-
   get '/figures' do
     @figures = Figure.all
     erb :"/figures/index"
@@ -12,6 +10,9 @@ class FiguresController<ApplicationController
 
   post '/figures' do
     @figure = Figure.create(name: params["figure_name"])
+    if !params["new_landmark"].empty?
+      @figure.landmarks << Landmark.create(name: params["new_landmark"])
+    end
     if !params["new_title"].empty?
       @figure.titles << Title.create(name: params["new_title"])
     end
@@ -20,9 +21,6 @@ class FiguresController<ApplicationController
         title = Title.find(id)
         @figure.titles << title
       end
-    end
-    if !params["new_landmark"].empty?
-      @figure.landmarks << Landmark.create(name: params["new_landmark"])
     end
     if params["figure"]["landmark_ids"] != nil
       params["figure"]["landmark_ids"].collect do |id|
@@ -37,5 +35,16 @@ class FiguresController<ApplicationController
   get '/figures/:id' do
     @figure = Figure.find(params[:id])
     erb :'/figures/show'
+  end
+
+  get '/figures/edit/:id' do
+    @figure = Figure.find(params[:id])
+    erb :'/figures/edit'
+  end
+
+  post '/figures/:id' do
+    @figure = Figure.find(params[:id])
+    
+    redirect to "figures/#{@figure.id}"
   end
 end
