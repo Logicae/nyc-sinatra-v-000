@@ -5,18 +5,18 @@
       Figure:
       <input type="text" name="figure_name" id="figure[name]">
 
-      Titles:
+      Title(s):
       <input type="text" name="new_title" id="title[name]">
 
       <%Title.all.each do |title|%>
-        <input type="checkbox" id= "title_<%=title.id%>" name="figure[title_ids][]" value="<%= title.id%>"><%=title.name%>
+        <input type="checkbox" id= "title_<%=title.id%>" name="figure[title_ids][]" value="<%=title.id%>"><%=title.name%>
       <%end%>
 
-      Landmark:
+      Landmark(s):
       <input type="text" name="new_landmark" id="landmark[name]">
 
       <%Landmark.all.each do |landmark|%>
-        <input type="checkbox" id="landmark_<%=landmark.id%>" name="figure[landmark_ids][]" value="<%= landmark.id%>"><%=landmark.name%>
+        <input type="checkbox" id="landmark_<%=landmark.id%>" name="figure[landmark_ids][]" value="<%=landmark.id%>"><%=landmark.name%>
       <%end%>
 
        <input type="submit" value="Create New Figure">
