@@ -32,19 +32,19 @@ class FiguresController<ApplicationController
     redirect to "figures/#{@figure.id}"
   end
 
+  get '/figures/:id/edit' do
+    @figure = Figure.find(params[:id])
+    erb :'/figures/edit'
+  end
+
   get '/figures/:id' do
     @figure = Figure.find(params[:id])
     erb :'/figures/show'
   end
 
-  get '/figures/edit/:id' do
-    @figure = Figure.find(params[:id])
-    erb :'/figures/edit'
-  end
-
   post '/figures/:id' do
     @figure = Figure.find(params[:id])
-    
     redirect to "figures/#{@figure.id}"
   end
+
 end
